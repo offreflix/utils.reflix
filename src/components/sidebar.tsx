@@ -50,8 +50,9 @@ export function Sidebar() {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <Link href="/">
-                <ArrowUpCircleIcon className="h-5 w-5" />
-                <span className="text-base font-semibold">utils.reflix</span>
+                <span className="text-base font-heading font-bold">
+                  utils.reflix
+                </span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
