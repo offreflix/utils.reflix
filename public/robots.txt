@@ -1,0 +1,10 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://utils.reflix.com.br/sitemap.xml
+
+# Disallow admin and api routes
+Disallow: /api/
+Disallow: /admin/ 
