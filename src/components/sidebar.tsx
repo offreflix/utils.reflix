@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ArrowUpCircleIcon, Calculator, Home } from 'lucide-react'
+import { Calculator, Home } from 'lucide-react'
 import {
   Sidebar as SidebarComponent,
   SidebarContent,
