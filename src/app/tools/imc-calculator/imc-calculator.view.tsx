@@ -11,30 +11,10 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import Script from 'next/script'
 
-import { useImcCalculatorModel } from './imc-calculator.model'
 import { Input } from '@/components/ui/input'
 import { IMCResult } from './imc-result'
-
-type ImcCalculatorViewProps = ReturnType<typeof useImcCalculatorModel>
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Calculadora de IMC',
-  description:
-    'Calcule seu Índice de Massa Corporal (IMC) de forma rápida e precisa.',
-  applicationCategory: 'HealthApplication',
-  operatingSystem: 'Web',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'BRL',
-  },
-  author: {
-    '@type': 'Organization',
-    name: 'Utils Reflix',
-  },
-}
+import { jsonLd } from './imc-calculator.metadata'
+import { ImcCalculatorViewProps } from './imc-calculator.types'
 
 export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
   const { form, onSubmit, finalImc } = props
@@ -47,8 +27,10 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
       />
       <div className="font-sans">
         <main className="flex flex-col gap-2 items-center justify-center">
-          <h1 className="text-4xl font-bold text-center">Calculadora de IMC</h1>
-          <p className="text-lg text-center text-muted-foreground">
+          <h1 className="text-4xl font-bold text-center font-heading tracking-tight">
+            Calculadora de IMC
+          </h1>
+          <p className="text-center text-muted-foreground">
             Calcule seu Índice de Massa Corporal (IMC) de forma rápida e precisa
           </p>
 

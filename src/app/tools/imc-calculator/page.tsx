@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ImcCalculatorPage() {
-  return <ImcCalculatorClient />
+export default async function ImcCalculatorPage() {
+  return (
+    <>
+      <ImcCalculatorClient />
+    </>
+  )
 }
