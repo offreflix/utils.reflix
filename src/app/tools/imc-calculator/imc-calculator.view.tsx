@@ -26,14 +26,7 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="font-sans">
-        <main className="flex flex-col gap-2 items-center justify-center">
-          <h1 className="text-4xl font-bold text-center font-heading tracking-tight">
-            Calculadora de IMC
-          </h1>
-          <p className="text-center text-muted-foreground">
-            Calcule seu Índice de Massa Corporal (IMC) de forma rápida e precisa
-          </p>
-
+        <section className="flex gap-2">
           <Card className="w-full max-w-md">
             <CardHeader>
               <h2 className="text-2xl font-semibold">Insira seus dados</h2>
@@ -152,7 +145,7 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
               </CardContent>
             </Card>
           )}
-        </main>
+        </section>
       </div>
     </>
   )
