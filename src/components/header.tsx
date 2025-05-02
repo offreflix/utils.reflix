@@ -2,6 +2,7 @@
 
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
+import { ThemeToggle } from './theme-togle'
 
 export function Header() {
   return (
@@ -13,6 +14,11 @@ export function Header() {
           className="mx-2 data-[orientation=vertical]:h-4"
         />
         <h1 className="text-base font-medium">Calculadora de IMC</h1>
+        <Separator
+          orientation="vertical"
+          className="mx-2 data-[orientation=vertical]:h-4"
+        />
+        <ThemeToggle />
       </div>
     </header>
   )
