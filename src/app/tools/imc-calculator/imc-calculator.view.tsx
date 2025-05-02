@@ -29,7 +29,9 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
         <section className="flex flex-col gap-8 lg:gap-2">
           <Card className="w-full">
             <CardHeader>
-              <h2 className="text-2xl font-semibold">Insira seus dados</h2>
+              <h2 className="text-2xl font-semibold font-heading tracking-tight">
+                Insira seus dados
+              </h2>
             </CardHeader>
             <CardContent>
               <Form {...form}>
@@ -137,7 +139,9 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
 
           <Card className="w-full">
             <CardHeader>
-              <h2 className="text-2xl font-semibold">Seu Resultado</h2>
+              <h2 className="text-2xl font-semibold font-heading tracking-tight">
+                Seu Resultado
+              </h2>
             </CardHeader>
             <CardContent>
               <IMCResult imc={finalImc} />

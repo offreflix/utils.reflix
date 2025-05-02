@@ -8,6 +8,13 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { ImcCalculatorClient } from './imc-calculator.client'
+import { HelpCircle } from 'lucide-react'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 
 export default async function ImcCalculatorPage() {
   return (
@@ -25,7 +32,9 @@ export default async function ImcCalculatorPage() {
 
       <article className="prose max-w-3xl">
         <section>
-          <h2 className="text-2xl font-semibold mb-4">O que é IMC?</h2>
+          <h2 className="text-2xl font-semibold mb-4 font-heading tracking-tight">
+            O que é IMC?
+          </h2>
           <p>
             O IMC (Índice de Massa Corporal) é um cálculo que avalia se uma
             pessoa está dentro do peso ideal, comparando o peso e a altura. A
@@ -40,7 +49,7 @@ export default async function ImcCalculatorPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mt-8 mb-4">
+          <h2 className="text-2xl font-semibold mt-8 mb-4 font-heading tracking-tight">
             Como interpretar o resultado do IMC?
           </h2>
           <p>
@@ -65,7 +74,9 @@ export default async function ImcCalculatorPage() {
               <TableBody>
                 <TableRow>
                   <TableCell>Menor que 18,5</TableCell>
-                  <TableCell>Abaixo do peso</TableCell>
+                  <TableCell className="text-blue-600 dark:text-blue-400">
+                    Abaixo do peso
+                  </TableCell>
                   <TableCell>
                     Baixo (mas com riscos de outros problemas)
                   </TableCell>
@@ -73,31 +84,41 @@ export default async function ImcCalculatorPage() {
 
                 <TableRow>
                   <TableCell>18,5 – 24,9</TableCell>
-                  <TableCell>Peso ideal</TableCell>
+                  <TableCell className="text-green-600 dark:text-green-400">
+                    Peso ideal
+                  </TableCell>
                   <TableCell>Normal</TableCell>
                 </TableRow>
 
                 <TableRow>
                   <TableCell>25 – 29,9</TableCell>
-                  <TableCell>Sobrepeso</TableCell>
+                  <TableCell className="text-yellow-600 dark:text-yellow-400">
+                    Sobrepeso
+                  </TableCell>
                   <TableCell>Aumentado</TableCell>
                 </TableRow>
 
                 <TableRow>
                   <TableCell>30 – 34,9</TableCell>
-                  <TableCell>Obesidade grau I</TableCell>
+                  <TableCell className="text-orange-600 dark:text-orange-400">
+                    Obesidade Grau I
+                  </TableCell>
                   <TableCell>Moderado</TableCell>
                 </TableRow>
 
                 <TableRow>
                   <TableCell>35 – 39,9</TableCell>
-                  <TableCell>Obesidade grau II</TableCell>
+                  <TableCell className="text-red-600 dark:text-red-400">
+                    Obesidade Grau II
+                  </TableCell>
                   <TableCell>Grave</TableCell>
                 </TableRow>
 
                 <TableRow>
                   <TableCell>Maior ou igual a 40</TableCell>
-                  <TableCell>Obesidade grau III</TableCell>
+                  <TableCell className="text-red-700 dark:text-red-300">
+                    Obesidade Grau III
+                  </TableCell>
                   <TableCell>Muito grave</TableCell>
                 </TableRow>
               </TableBody>
@@ -106,7 +127,7 @@ export default async function ImcCalculatorPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mt-8 mb-4">
+          <h2 className="text-2xl font-semibold mt-8 mb-4 font-heading tracking-tight">
             O IMC é confiável?
           </h2>
           <p>
@@ -146,7 +167,7 @@ export default async function ImcCalculatorPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mt-8 mb-4">
+          <h2 className="text-2xl font-semibold mt-8 mb-4 font-heading tracking-tight">
             Por que é importante manter o IMC saudável?
           </h2>
           <p>
@@ -180,7 +201,7 @@ export default async function ImcCalculatorPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mt-8 mb-4">
+          <h2 className="text-2xl font-semibold mt-8 mb-4 font-heading tracking-tight">
             Dicas para manter um peso saudável
           </h2>
 
@@ -235,88 +256,102 @@ export default async function ImcCalculatorPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mt-8 mb-4">
-            Perguntas frequentes sobre IMC (FAQ)
-          </h2>
+          <div className="flex items-center gap-2 mb-6 mt-8">
+            <HelpCircle className="h-6 w-6 text-primary" />
+            <h2 className="text-2xl font-semibold font-heading tracking-tight">
+              Perguntas frequentes sobre IMC (FAQ)
+            </h2>
+          </div>
 
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-medium mt-6 mb-2">
+          <p className="text-muted-foreground mb-6">
+            Encontre respostas para as dúvidas mais comuns sobre o Índice de
+            Massa Corporal e sua interpretação.
+          </p>
+
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="text-xl font-medium">
                 O que é um IMC ideal?
-              </h3>
-              <p>
+              </AccordionTrigger>
+              <AccordionContent className="text-base">
                 Um IMC entre 18,5 e 24,9 kg/m² é considerado ideal para a
                 maioria das pessoas adultas, independentemente do sexo. Esta
                 faixa está associada ao menor risco de problemas de saúde
                 relacionados ao peso.
-              </p>
-            </div>
+              </AccordionContent>
+            </AccordionItem>
 
-            <div>
-              <h3 className="text-xl font-medium mt-6 mb-2">
+            <AccordionItem value="item-2">
+              <AccordionTrigger className="text-xl font-medium">
                 IMC alto significa que estou doente?
-              </h3>
-              <p>
+              </AccordionTrigger>
+              <AccordionContent className="text-base">
                 Não necessariamente. O IMC é apenas um indicador e não um
                 diagnóstico. Pessoas com IMC elevado podem ser saudáveis, assim
                 como pessoas com IMC normal podem ter problemas de saúde. É
                 importante consultar um médico ou nutricionista para uma
                 avaliação completa.
-              </p>
-            </div>
+              </AccordionContent>
+            </AccordionItem>
 
-            <div>
-              <h3 className="text-xl font-medium mt-6 mb-2">
+            <AccordionItem value="item-3">
+              <AccordionTrigger className="text-xl font-medium">
                 Como calcular meu IMC manualmente?
-              </h3>
-              <p>
-                Divida seu peso em quilos pela altura em metros ao quadrado.
-                Exemplo: Para uma pessoa com 70kg e 1,70m de altura: 70 ÷ (1,70
-                × 1,70) = 70 ÷ 2,89 = 24,22 kg/m².
-              </p>
-            </div>
+              </AccordionTrigger>
+              <AccordionContent className="text-base">
+                <p>
+                  Divida seu peso em quilos pela altura em metros ao quadrado.
+                </p>
+                <p className="mt-2">
+                  <strong>Exemplo:</strong> Para uma pessoa com 70kg e 1,70m de
+                  altura:
+                  <br />
+                  70 ÷ (1,70 × 1,70) = 70 ÷ 2,89 = 24,22 kg/m².
+                </p>
+              </AccordionContent>
+            </AccordionItem>
 
-            <div>
-              <h3 className="text-xl font-medium mt-6 mb-2">
+            <AccordionItem value="item-4">
+              <AccordionTrigger className="text-xl font-medium">
                 O IMC é o mesmo para homens e mulheres?
-              </h3>
-              <p>
+              </AccordionTrigger>
+              <AccordionContent className="text-base">
                 A fórmula do IMC é a mesma, mas a interpretação pode variar.
                 Mulheres tendem a ter naturalmente mais gordura corporal que
                 homens. Alguns especialistas sugerem faixas ligeiramente
                 diferentes, mas a OMS utiliza as mesmas classificações para
                 ambos os sexos.
-              </p>
-            </div>
+              </AccordionContent>
+            </AccordionItem>
 
-            <div>
-              <h3 className="text-xl font-medium mt-6 mb-2">
+            <AccordionItem value="item-5">
+              <AccordionTrigger className="text-xl font-medium">
                 Qual é o IMC ideal para crianças e adolescentes?
-              </h3>
-              <p>
+              </AccordionTrigger>
+              <AccordionContent className="text-base">
                 Para crianças e adolescentes (2-19 anos), o IMC é calculado da
                 mesma forma, mas interpretado diferentemente usando curvas de
                 crescimento específicas por idade e sexo. Consulte um pediatra
                 para a avaliação correta.
-              </p>
-            </div>
+              </AccordionContent>
+            </AccordionItem>
 
-            <div>
-              <h3 className="text-xl font-medium mt-6 mb-2">
+            <AccordionItem value="item-6">
+              <AccordionTrigger className="text-xl font-medium">
                 Posso confiar apenas no IMC para avaliar minha saúde?
-              </h3>
-              <p>
+              </AccordionTrigger>
+              <AccordionContent className="text-base">
                 Não. O IMC deve ser usado como uma ferramenta inicial de
                 avaliação, mas não como único parâmetro. Outros fatores como
                 circunferência abdominal, histórico familiar, hábitos de vida e
                 exames laboratoriais são essenciais para uma avaliação completa
                 da saúde.
-              </p>
-            </div>
-          </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </section>
 
-        <section className="mt-12 border-t pt-8">
+        <section className="border-t pt-8">
           <p className="text-sm text-neutral-600">
             <strong>Nota importante:</strong> Esta calculadora de IMC e as
             informações fornecidas são apenas para fins educativos e

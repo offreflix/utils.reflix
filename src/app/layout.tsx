@@ -94,6 +94,7 @@ export default function RootLayout({
             ${ibmPlexSans.variable}
             ${dmMono.variable}
             antialiased
+            font-sans
           `}
       >
         <ThemeProvider

@@ -88,7 +88,7 @@ export function IMCResult({ imc }: IMCResultProps) {
       >
         <div className="flex flex-col items-center space-y-4">
           {imc && (
-            <Test
+            <ImcResultCard
               icon={icon}
               imc={imc}
               category={category}
@@ -97,7 +97,7 @@ export function IMCResult({ imc }: IMCResultProps) {
           )}
 
           {!imc && (
-            <Test
+            <ImcResultCard
               icon={
                 <Hourglass className="h-6 w-6 text-muted-foreground animate-pulse" />
               }
@@ -173,14 +173,19 @@ export function IMCResult({ imc }: IMCResultProps) {
   )
 }
 
-interface TestProps {
+interface ImcResultCardProps {
   icon: React.ReactNode
   imc: string
   category: string
   textColor: string
 }
 
-const Test = ({ icon, imc, category, textColor }: TestProps) => {
+const ImcResultCard = ({
+  icon,
+  imc,
+  category,
+  textColor,
+}: ImcResultCardProps) => {
   return (
     <div className="text-center">
       <div className="flex items-center justify-center mb-2">
