@@ -1,7 +1,15 @@
 'use client'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Calculator, Home } from 'lucide-react'
+import {
+  Calculator,
+  Flame,
+  Home,
+  KeyRound,
+  Scale,
+  Settings2,
+} from 'lucide-react'
 import {
   Sidebar as SidebarComponent,
   SidebarContent,
@@ -17,6 +25,11 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from '@/components/ui/sidebar'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 
 const utilityGroups = [
   {
@@ -29,9 +42,28 @@ const utilityGroups = [
     icon: Calculator,
     items: [
       {
-        title: 'Calculadora de IMC',
+        title: 'IMC',
+        description: 'Calculadora de Índice de Massa Corporal',
         href: '/tools/imc-calculator',
-        icon: Calculator,
+        icon: Scale,
+      },
+      {
+        title: 'Calorias Diárias',
+        description: 'Calculadora de Calorias Diárias',
+        href: '/tools/tmb-calculator',
+        icon: Flame,
+      },
+    ],
+  },
+  {
+    title: 'Utilitários',
+    icon: Settings2,
+    items: [
+      {
+        title: 'Gerador de Senhas',
+        description: 'Gerador de Senhas Seguras',
+        href: '/tools/password-generator',
+        icon: KeyRound,
       },
     ],
   },
@@ -73,19 +105,31 @@ export function Sidebar({ version }: { version: string }) {
                     <SidebarMenuItem>
                       <SidebarMenuSub>
                         {group.items.map((item) => (
-                          <SidebarMenuSubItem key={item.title}>
-                            <SidebarMenuSubButton
-                              asChild
-                              isActive={pathname === item.href}
-                            >
-                              <Link href={item.href}>
-                                {item.icon && (
-                                  <item.icon className="mr-2 h-4 w-4" />
-                                )}
-                                {item.title}
-                              </Link>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
+                          <Tooltip key={item.title}>
+                            <TooltipTrigger asChild>
+                              <SidebarMenuSubItem key={item.title}>
+                                <SidebarMenuSubButton
+                                  asChild
+                                  isActive={pathname === item.href}
+                                >
+                                  <Link href={item.href}>
+                                    {item.icon && (
+                                      <item.icon className="mr-2 h-4 w-4" />
+                                    )}
+                                    <span className="sr-only">
+                                      {item.title}
+                                    </span>
+                                    <span>{item.title}</span>
+                                  </Link>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            </TooltipTrigger>
+                            {item.description && (
+                              <TooltipContent side="right">
+                                {item.description}
+                              </TooltipContent>
+                            )}
+                          </Tooltip>
                         ))}
                       </SidebarMenuSub>
                     </SidebarMenuItem>
