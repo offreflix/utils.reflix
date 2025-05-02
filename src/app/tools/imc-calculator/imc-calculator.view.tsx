@@ -12,7 +12,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import Script from 'next/script'
 
 import { Input } from '@/components/ui/input'
-import { IMCResult } from './imc-result'
+import { IMCResult } from './components/imc-result'
 import { jsonLd } from './imc-calculator.metadata'
 import { ImcCalculatorViewProps } from './imc-calculator.types'
 

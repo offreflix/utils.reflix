@@ -18,7 +18,7 @@ import {
 
 export default async function ImcCalculatorPage() {
   return (
-    <main className="prose max-w-3xl mx-auto my-8 space-y-8 px-4 sm:px-6 lg:px-8">
+    <main className="prose w-full max-w-3xl my-8 space-y-8 px-8 sm:px-8 lg:px-8">
       <div className="flex flex-col gap-2">
         <h1 className="text-4xl font-bold font-heading tracking-tight">
           Calculadora de IMC

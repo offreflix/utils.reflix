@@ -111,7 +111,7 @@ export default async function RootLayout({
             <SidebarInset>
               <Header />
               <div className="flex flex-1 flex-col">
-                <div className="@container/main flex flex-1 flex-col gap-2">
+                <div className="@container/main flex flex-1 flex-col items-center gap-2">
                   {children}
                 </div>
               </div>
