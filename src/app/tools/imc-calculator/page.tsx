@@ -1,20 +1,31 @@
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 import { ImcCalculatorClient } from './imc-calculator.client'
 
 export default async function ImcCalculatorPage() {
   return (
-    <main className="prose max-w-3xl mx-auto my-8">
-      <h1 className="text-4xl font-bold font-heading tracking-tight">
-        Calculadora de IMC
-      </h1>
-      <p className="text-muted-foreground">
-        Calcule seu Índice de Massa Corporal (IMC) de forma rápida e precisa
-      </p>
+    <main className="prose max-w-3xl mx-auto my-8 space-y-8 px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col gap-2">
+        <h1 className="text-4xl font-bold font-heading tracking-tight">
+          Calculadora de IMC
+        </h1>
+        <p className="text-muted-foreground">
+          Calcule seu Índice de Massa Corporal (IMC) de forma rápida e precisa
+        </p>
+      </div>
 
       <ImcCalculatorClient />
 
-      <article className="prose max-w-3xl mx-auto my-8">
+      <article className="prose max-w-3xl">
         <section>
-          <h2 className="text-2xl font-semibold mt-8 mb-4">O que é IMC?</h2>
+          <h2 className="text-2xl font-semibold mb-4">O que é IMC?</h2>
           <p>
             O IMC (Índice de Massa Corporal) é um cálculo que avalia se uma
             pessoa está dentro do peso ideal, comparando o peso e a altura. A
@@ -38,60 +49,60 @@ export default async function ImcCalculatorPage() {
             altura. Confira a tabela de classificação:
           </p>
 
-          <div className="overflow-x-auto my-6">
-            <table className="min-w-full border-collapse">
-              <caption className="sr-only">
-                Classificação do IMC segundo a OMS
-              </caption>
-              <thead>
-                <tr className="bg-gray-100">
-                  <th className="border px-4 py-2 text-left">IMC (kg/m²)</th>
-                  <th className="border px-4 py-2 text-left">Classificação</th>
-                  <th className="border px-4 py-2 text-left">
-                    Risco de comorbidades
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border px-4 py-2">Menor que 18,5</td>
-                  <td className="border px-4 py-2">Abaixo do peso</td>
-                  <td className="border px-4 py-2">
-                    Baixo (mas com riscos de outros problemas)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2">18,5 – 24,9</td>
-                  <td className="border px-4 py-2">Peso ideal</td>
-                  <td className="border px-4 py-2">Normal</td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2">25 – 29,9</td>
-                  <td className="border px-4 py-2">Sobrepeso</td>
-                  <td className="border px-4 py-2">Aumentado</td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2">30 – 34,9</td>
-                  <td className="border px-4 py-2">Obesidade grau I</td>
-                  <td className="border px-4 py-2">Moderado</td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2">35 – 39,9</td>
-                  <td className="border px-4 py-2">Obesidade grau II</td>
-                  <td className="border px-4 py-2">Grave</td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2">Maior ou igual a 40</td>
-                  <td className="border px-4 py-2">Obesidade grau III</td>
-                  <td className="border px-4 py-2">Muito grave</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <div className="border rounded-md mt-6">
+            <Table>
+              <TableCaption className="mb-4">
+                Fonte: Organização Mundial da Saúde (OMS).
+              </TableCaption>
+              <TableHeader className="bg-neutral-100 dark:bg-neutral-900">
+                <TableRow>
+                  <TableHead>IMC (kg/m²)</TableHead>
+                  <TableHead>Classificação </TableHead>
+                  <TableHead>Risco de comorbidades</TableHead>
+                </TableRow>
+              </TableHeader>
 
-          <p>
-            <em>Fonte: Organização Mundial da Saúde (OMS)</em>
-          </p>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Menor que 18,5</TableCell>
+                  <TableCell>Abaixo do peso</TableCell>
+                  <TableCell>
+                    Baixo (mas com riscos de outros problemas)
+                  </TableCell>
+                </TableRow>
+
+                <TableRow>
+                  <TableCell>18,5 – 24,9</TableCell>
+                  <TableCell>Peso ideal</TableCell>
+                  <TableCell>Normal</TableCell>
+                </TableRow>
+
+                <TableRow>
+                  <TableCell>25 – 29,9</TableCell>
+                  <TableCell>Sobrepeso</TableCell>
+                  <TableCell>Aumentado</TableCell>
+                </TableRow>
+
+                <TableRow>
+                  <TableCell>30 – 34,9</TableCell>
+                  <TableCell>Obesidade grau I</TableCell>
+                  <TableCell>Moderado</TableCell>
+                </TableRow>
+
+                <TableRow>
+                  <TableCell>35 – 39,9</TableCell>
+                  <TableCell>Obesidade grau II</TableCell>
+                  <TableCell>Grave</TableCell>
+                </TableRow>
+
+                <TableRow>
+                  <TableCell>Maior ou igual a 40</TableCell>
+                  <TableCell>Obesidade grau III</TableCell>
+                  <TableCell>Muito grave</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
         </section>
 
         <section>

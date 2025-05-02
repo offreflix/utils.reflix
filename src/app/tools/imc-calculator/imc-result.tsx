@@ -2,7 +2,7 @@
 
 import { useState, useEffect, JSX } from 'react'
 import { motion } from 'framer-motion'
-import { AlertCircle, CheckCircle, Activity } from 'lucide-react'
+import { AlertCircle, CheckCircle, Activity, Hourglass } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface IMCResultProps {
@@ -11,8 +11,8 @@ interface IMCResultProps {
 
 export function IMCResult({ imc }: IMCResultProps) {
   const [category, setCategory] = useState<string>('')
-  const [color, setColor] = useState<string>('bg-gray-100')
-  const [textColor, setTextColor] = useState<string>('text-gray-500')
+  const [color, setColor] = useState<string>('bg-neutral-100')
+  const [textColor, setTextColor] = useState<string>('text-neutral-500')
   const [icon, setIcon] = useState<JSX.Element>(
     <Activity className="h-6 w-6" />
   )
@@ -55,8 +55,6 @@ export function IMCResult({ imc }: IMCResultProps) {
     }
   }, [imc])
 
-  if (!imc) return null
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -66,45 +64,27 @@ export function IMCResult({ imc }: IMCResultProps) {
     >
       <div className={cn('rounded-xl p-6 shadow-lg', color)}>
         <div className="flex flex-col items-center space-y-4">
-          <div className="text-center">
-            <div className="flex items-center justify-center p-1 rounded-full">
-              {icon}
-            </div>
-            <h3 className="text-lg font-medium text-gray-700">Seu IMC é</h3>
-            <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-            >
-              <span className={cn('text-5xl font-bold', textColor)}>{imc}</span>
-            </motion.div>
-
-            <div className="mt-2">
-              <span className={cn('text-xl font-semibold', textColor)}>
-                {category}
-              </span>
-            </div>
-          </div>
-
-          <div className="w-full bg-gray-200 h-2 rounded-full mt-4">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: '100%' }}
-              transition={{ delay: 0.4, duration: 1 }}
-              className={cn(
-                'h-2 rounded-full',
-                textColor.replace('text', 'bg')
-              )}
-              style={{
-                width: `${Math.min(
-                  Number.parseFloat(imc.replace(',', '.')) * 3,
-                  100
-                )}%`,
-              }}
+          {imc && (
+            <Test
+              icon={icon}
+              imc={imc}
+              category={category}
+              textColor={textColor}
             />
-          </div>
+          )}
 
-          <div className="text-sm text-gray-600 text-center mt-4">
+          {!imc && (
+            <Test
+              icon={
+                <Hourglass className="h-6 w-6 text-muted-foreground animate-pulse" />
+              }
+              imc="--"
+              category="Preencha os dados"
+              textColor="text-neutral-400"
+            />
+          )}
+
+          <div className="text-sm text-neutral-600 text-center mt-4">
             <p>
               O IMC é uma medida que relaciona peso e altura para avaliar se uma
               pessoa está com peso adequado.
@@ -143,5 +123,36 @@ export function IMCResult({ imc }: IMCResultProps) {
         </div>
       </div>
     </motion.div>
+  )
+}
+
+interface TestProps {
+  icon: React.ReactNode
+  imc: string
+  category: string
+  textColor: string
+}
+
+const Test = ({ icon, imc, category, textColor }: TestProps) => {
+  return (
+    <div className="text-center border">
+      <div className="flex items-center justify-center p-1 rounded-full">
+        {icon}
+      </div>
+      <h3 className="text-lg font-medium text-neutral-700">Seu IMC é</h3>
+      <motion.div
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+      >
+        <span className={cn('text-5xl font-bold', textColor)}>{imc}</span>
+      </motion.div>
+
+      <div className="mt-2">
+        <span className={cn('text-xl font-semibold', textColor)}>
+          {category}
+        </span>
+      </div>
+    </div>
   )
 }

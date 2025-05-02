@@ -26,8 +26,8 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="font-sans">
-        <section className="flex gap-2">
-          <Card className="w-full max-w-md">
+        <section className="flex flex-col gap-8 lg:gap-2">
+          <Card className="w-full">
             <CardHeader>
               <h2 className="text-2xl font-semibold">Insira seus dados</h2>
             </CardHeader>
@@ -46,21 +46,21 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
                         <FormControl>
                           <ToggleGroup
                             type="single"
-                            className="w-full"
+                            className="w-full gap-2"
                             onValueChange={field.onChange}
                             value={field.value}
                           >
                             <ToggleGroupItem
                               value="homem"
                               aria-label="Selecionar gênero masculino"
-                              className="flex-1"
+                              className="flex-1 border rounded-md"
                             >
                               Homem
                             </ToggleGroupItem>
                             <ToggleGroupItem
                               value="mulher"
                               aria-label="Selecionar gênero feminino"
-                              className="flex-1"
+                              className="flex-1 border rounded-md"
                             >
                               Mulher
                             </ToggleGroupItem>
@@ -135,16 +135,14 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
             </CardContent>
           </Card>
 
-          {finalImc && (
-            <Card className="w-full max-w-md">
-              <CardHeader>
-                <h2 className="text-2xl font-semibold">Seu Resultado</h2>
-              </CardHeader>
-              <CardContent>
-                <IMCResult imc={finalImc} />
-              </CardContent>
-            </Card>
-          )}
+          <Card className="w-full">
+            <CardHeader>
+              <h2 className="text-2xl font-semibold">Seu Resultado</h2>
+            </CardHeader>
+            <CardContent>
+              <IMCResult imc={finalImc} />
+            </CardContent>
+          </Card>
         </section>
       </div>
     </>
