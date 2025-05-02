@@ -53,7 +53,7 @@ export function Sidebar({ version }: { version: string }) {
                 <span className="text-base font-heading font-bold">
                   utils.reflix
                 </span>
-                v{version}
+                <span aria-label="Application version">v{version}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
