@@ -317,14 +317,14 @@ export default async function ImcCalculatorPage() {
         </section>
 
         <section className="mt-12 border-t pt-8">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-neutral-600">
             <strong>Nota importante:</strong> Esta calculadora de IMC e as
             informações fornecidas são apenas para fins educativos e
             informativos. Não substituem a consulta com profissionais de saúde
             qualificados. Consulte sempre seu médico ou nutricionista para
             avaliações personalizadas e orientações específicas para sua saúde.
           </p>
-          <p className="text-sm text-gray-600 mt-2">
+          <p className="text-sm text-neutral-600 mt-2">
             Última atualização: Maio de 2024
           </p>
         </section>
