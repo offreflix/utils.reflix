@@ -61,8 +61,17 @@ export default async function ImcCalculatorPage() {
           <div className="border rounded-md mt-6">
             <Table>
               <TableCaption className="mb-4">
-                Fonte: Organização Mundial da Saúde (OMS).
+                Fonte:{' '}
+                <a
+                  href="https://www.who.int/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-primary"
+                >
+                  Organização Mundial da Saúde (OMS)
+                </a>
               </TableCaption>
+
               <TableHeader className="bg-neutral-100 dark:bg-neutral-900">
                 <TableRow>
                   <TableHead>IMC (kg/m²)</TableHead>
