@@ -37,7 +37,7 @@ const utilityGroups = [
   },
 ]
 
-export function Sidebar() {
+export function Sidebar({ version }: { version: string }) {
   const pathname = usePathname()
 
   return (
@@ -49,10 +49,11 @@ export function Sidebar() {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <Link href="/">
+              <Link className="flex justify-between" href="/">
                 <span className="text-base font-heading font-bold">
                   utils.reflix
                 </span>
+                <span aria-label="Application version">v{version}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

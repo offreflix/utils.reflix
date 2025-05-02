@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { Sidebar } from '@/components/sidebar'
 import { Header } from '@/components/header'
+import { getAppVersion } from '@/action/version'
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
@@ -81,11 +82,13 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const version = await getAppVersion()
+
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body
@@ -104,7 +107,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SidebarProvider>
-            <Sidebar />
+            <Sidebar version={version} />
             <SidebarInset>
               <Header />
               <div className="flex flex-1 flex-col">
