@@ -107,7 +107,11 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
                           <span className="text-xs text-neutral-400">(cm)</span>
                         </FormLabel>
                         <FormControl>
-                          <Input placeholder="Ex: 189" {...field} />
+                          <Input
+                            type="number"
+                            placeholder="Ex: 189"
+                            {...field}
+                          />
                         </FormControl>
                         {/* <FormDescription>cm</FormDescription> */}
                         <FormMessage />
@@ -124,7 +128,11 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
                           <span className="text-xs text-neutral-400">(kg)</span>
                         </FormLabel>
                         <FormControl>
-                          <Input placeholder="Ex: 89,5" {...field} />
+                          <Input
+                            type="number"
+                            placeholder="Ex: 89,5"
+                            {...field}
+                          />
                         </FormControl>
 
                         <FormMessage />
