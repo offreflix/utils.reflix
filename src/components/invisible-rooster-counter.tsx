@@ -15,17 +15,25 @@ export function InvisibleRoosterCounter() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const savedCount = localStorage.getItem(STORAGE_KEY)
-    const savedMinimized = localStorage.getItem(MINIMIZED_STORAGE_KEY)
-
-    if (savedCount) {
-      setCount(parseInt(savedCount, 10))
-    } else {
+    try {
+      const savedCount = localStorage.getItem(STORAGE_KEY)
+      if (savedCount) {
+        setCount(parseInt(savedCount, 10))
+      } else {
+        setCount(0)
+      }
+    } catch (error) {
+      console.error('Error accessing localStorage for count:', error)
       setCount(0)
     }
 
-    if (savedMinimized) {
-      setIsMinimized(savedMinimized === 'true')
+    try {
+      const savedMinimized = localStorage.getItem(MINIMIZED_STORAGE_KEY)
+      if (savedMinimized) {
+        setIsMinimized(savedMinimized === 'true')
+      }
+    } catch (error) {
+      console.error('Error accessing localStorage for minimized state:', error)
     }
 
     setIsVisible(true)
