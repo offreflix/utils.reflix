@@ -7,6 +7,7 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { Sidebar } from '@/components/sidebar'
 import { Header } from '@/components/header'
 import { getAppVersion } from '@/action/version'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
@@ -106,17 +107,19 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider>
-            <Sidebar version={version} />
-            <SidebarInset>
-              <Header />
-              <div className="flex flex-1 flex-col">
-                <div className="@container/main flex flex-1 flex-col items-center gap-2">
-                  {children}
+          <TooltipProvider>
+            <SidebarProvider>
+              <Sidebar version={version} />
+              <SidebarInset>
+                <Header />
+                <div className="flex flex-1 flex-col">
+                  <div className="@container/main flex flex-1 flex-col items-center gap-2">
+                    {children}
+                  </div>
                 </div>
-              </div>
-            </SidebarInset>
-          </SidebarProvider>
+              </SidebarInset>
+            </SidebarProvider>
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
