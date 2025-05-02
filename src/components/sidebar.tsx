@@ -116,7 +116,9 @@ export function Sidebar({ version }: { version: string }) {
                                     {item.icon && (
                                       <item.icon className="mr-2 h-4 w-4" />
                                     )}
-                                    <span className="sr-only">Icon</span>
+                                    <span className="sr-only">
+                                      {item.title}
+                                    </span>
                                     <span>{item.title}</span>
                                   </Link>
                                 </SidebarMenuSubButton>
