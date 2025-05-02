@@ -130,6 +130,7 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
                         <FormControl>
                           <Input
                             type="number"
+                            step={0.1}
                             placeholder="Ex: 89,5"
                             {...field}
                           />
