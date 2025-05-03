@@ -8,7 +8,7 @@ import { Sidebar } from '@/components/sidebar'
 import { Header } from '@/components/header'
 import { getAppVersion } from '@/action/version'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { InvisibleRoosterCounter } from '@/components/invisible-rooster-counter'
+import { InvisibleRoosterView } from '@/components/invisible-rooster/invisible-rooster.view'
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
@@ -110,7 +110,7 @@ export default async function RootLayout({
         >
           <TooltipProvider>
             <SidebarProvider>
-              <InvisibleRoosterCounter />
+              <InvisibleRoosterView />
 
               <Sidebar version={version} />
               <SidebarInset>
