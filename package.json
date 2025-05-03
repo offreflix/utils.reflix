@@ -1,6 +1,6 @@
 {
   "name": "utils.reflix",
-  "version": "0.19.5",
+  "version": "0.20.5",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",

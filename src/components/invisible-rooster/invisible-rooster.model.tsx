@@ -38,20 +38,33 @@ export function useInvisibleRoosterModel() {
   const [clickAnimation, setClickAnimation] = useState(false)
 
   useEffect(() => {
-    const savedData = localStorage.getItem(STORAGE_KEY)
-    if (savedData) {
-      const { count, upgradesData, clickPower, passivePower } =
-        JSON.parse(savedData)
-      setCount(count)
-      setUpgrades(
-        upgradesData.map((data: UpgradeData) => ({
-          ...data,
-          icon: getUpgradeIcon(data.id),
-        }))
-      )
-      setClickPower(clickPower)
-      setPassivePower(passivePower)
-    } else {
+    try {
+      const savedData = localStorage.getItem(STORAGE_KEY)
+      if (savedData) {
+        const { count, upgradesData, clickPower, passivePower, isMinimized } =
+          JSON.parse(savedData)
+        setCount(count)
+        setUpgrades(
+          upgradesData.map((data: UpgradeData) => ({
+            ...data,
+            icon: getUpgradeIcon(data.id),
+          }))
+        )
+        setClickPower(clickPower)
+        setPassivePower(passivePower)
+        setIsMinimized(isMinimized)
+      } else {
+        setUpgrades(
+          INITIAL_UPGRADES_DATA.map((data) => ({
+            ...data,
+            icon: getUpgradeIcon(data.id),
+          }))
+        )
+        setCount(0)
+      }
+      setIsVisible(true)
+    } catch (error) {
+      console.error('Error loading from localStorage:', error)
       setUpgrades(
         INITIAL_UPGRADES_DATA.map((data) => ({
           ...data,
@@ -59,12 +72,13 @@ export function useInvisibleRoosterModel() {
         }))
       )
       setCount(0)
+      setIsVisible(true)
     }
-    setIsVisible(true)
   }, [])
 
   useEffect(() => {
-    if (count !== null) {
+    try {
+      if (count === null) return
       const upgradesData = upgrades.map(({ ...data }) => data)
       localStorage.setItem(
         STORAGE_KEY,
@@ -73,10 +87,13 @@ export function useInvisibleRoosterModel() {
           upgradesData,
           clickPower,
           passivePower,
+          isMinimized,
         })
       )
+    } catch (error) {
+      console.error('Error saving to localStorage:', error)
     }
-  }, [count, upgrades, clickPower, passivePower])
+  }, [count, upgrades, clickPower, passivePower, isMinimized])
 
   useEffect(() => {
     if (passivePower === 0) return
