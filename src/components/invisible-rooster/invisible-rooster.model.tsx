@@ -126,7 +126,7 @@ export function useInvisibleRoosterModel() {
       owned: upgrade.owned + 1,
     }
 
-    setCount(count - cost)
+    setCount((prevCount) => (prevCount !== null ? prevCount - cost : 0))
     setUpgrades(newUpgrades)
 
     const newClickPower = newUpgrades
