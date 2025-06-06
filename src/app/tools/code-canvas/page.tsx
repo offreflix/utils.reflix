@@ -2,6 +2,31 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+function prepareCode(raw: string) {
+  let componentName = 'App'
+  let code = raw
+    .split('\n')
+    .filter((line) => !line.trim().startsWith('import'))
+    .join('\n')
+
+  const exportDefaultFn = code.match(/export\s+default\s+function\s+(\w+)/)
+  if (exportDefaultFn) {
+    componentName = exportDefaultFn[1]
+    code = code.replace(
+      /export\s+default\s+function\s+(\w+)/,
+      `function ${componentName}`,
+    )
+  }
+
+  const exportDefault = code.match(/export\s+default\s+(\w+)/)
+  if (exportDefault) {
+    componentName = exportDefault[1]
+    code = code.replace(/export\s+default\s+(\w+)/, '')
+  }
+
+  return { code, componentName }
+}
+
 const defaultCode = `function App() {
   const [count, setCount] = React.useState(0)
   return (
@@ -22,20 +47,24 @@ export default function CodeCanvasPage() {
   useEffect(() => {
     const iframe = iframeRef.current
     if (!iframe) return
+
+    const { code: cleaned, componentName } = prepareCode(code)
+
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/recharts/umd/Recharts.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
   <div id="root"></div>
   <script type="text/babel">
-${code}
+${cleaned}
     const rootElement = document.getElementById('root');
-    ReactDOM.createRoot(rootElement).render(<App />);
+    ReactDOM.createRoot(rootElement).render(<${componentName} />);
   </script>
 </body>
 </html>`
