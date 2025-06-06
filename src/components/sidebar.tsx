@@ -9,6 +9,7 @@ import {
   KeyRound,
   Scale,
   Settings2,
+  SquareTerminal,
 } from 'lucide-react'
 import {
   Sidebar as SidebarComponent,
@@ -64,6 +65,12 @@ const utilityGroups = [
         description: 'Gerador de Senhas Seguras',
         href: '/tools/password-generator',
         icon: KeyRound,
+      },
+      {
+        title: 'Code Canvas',
+        description: 'Execute códigos React em tempo real',
+        href: '/tools/code-canvas',
+        icon: SquareTerminal,
       },
     ],
   },
