@@ -57,6 +57,7 @@ export default function CodeCanvasPage() {
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/recharts/umd/Recharts.js"></script>
+  <script>if (window.Recharts) Object.assign(window, window.Recharts)</script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
