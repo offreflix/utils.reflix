@@ -7,7 +7,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import Script from 'next/script'
 
@@ -29,9 +29,7 @@ export const ImcCalculatorView = (props: ImcCalculatorViewProps) => {
         <section className="flex flex-col gap-8 lg:gap-2">
           <Card className="w-full">
             <CardHeader>
-              <h2 className="text-2xl font-semibold font-heading tracking-tight">
-                Insira seus dados
-              </h2>
+              <CardTitle>Insira seus dados</CardTitle>
             </CardHeader>
             <CardContent>
               <Form {...form}>
