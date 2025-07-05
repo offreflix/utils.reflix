@@ -23,6 +23,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { utilityGroups } from '@/lib/utility-groups'
+import { Heart } from 'lucide-react'
 
 export function Sidebar({ version }: { version: string }) {
   const pathname = usePathname()
@@ -112,6 +113,22 @@ export function Sidebar({ version }: { version: string }) {
             )}
           </SidebarGroup>
         ))}
+
+        {/* Seção de Favoritos */}
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === '/favorites'}>
+                  <Link href="/favorites">
+                    <Heart className="mr-2 h-4 w-4" />
+                    <span>Favoritos</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarRail />
     </SidebarComponent>

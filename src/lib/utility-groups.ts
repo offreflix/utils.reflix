@@ -20,6 +20,7 @@ export const utilityGroups = [
     description: 'Ferramentas para cálculos diversos',
     items: [
       {
+        id: 'imc-calculator',
         title: 'Calculadora de IMC',
         shortTitle: 'IMC',
         description: 'Calculadora de Índice de Massa Corporal',
@@ -29,6 +30,7 @@ export const utilityGroups = [
         bgColor: 'bg-blue-50',
       },
       {
+        id: 'tmb-calculator',
         title: 'Calculadora de Taxa Metabólica Basal',
         shortTitle: 'Taxa Metabólica Basal',
         description: 'Calculadora de Calorias Diárias',
@@ -46,6 +48,7 @@ export const utilityGroups = [
     description: 'Ferramentas úteis para o dia a dia',
     items: [
       {
+        id: 'password-generator',
         title: 'Gerador de Senhas',
         shortTitle: 'Gerador de Senhas',
         description: 'Gerador de Senhas Seguras',
