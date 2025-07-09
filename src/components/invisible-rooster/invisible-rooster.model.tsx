@@ -29,7 +29,7 @@ export function useInvisibleRoosterModel() {
     INITIAL_UPGRADES_DATA.map((data) => ({
       ...data,
       icon: getUpgradeIcon(data.id),
-    }))
+    })),
   )
   const [clickPower, setClickPower] = useState(1)
   const [passivePower, setPassivePower] = useState(0)
@@ -48,7 +48,7 @@ export function useInvisibleRoosterModel() {
           upgradesData.map((data: UpgradeData) => ({
             ...data,
             icon: getUpgradeIcon(data.id),
-          }))
+          })),
         )
         setClickPower(clickPower)
         setPassivePower(passivePower)
@@ -58,7 +58,7 @@ export function useInvisibleRoosterModel() {
           INITIAL_UPGRADES_DATA.map((data) => ({
             ...data,
             icon: getUpgradeIcon(data.id),
-          }))
+          })),
         )
         setCount(0)
       }
@@ -69,7 +69,7 @@ export function useInvisibleRoosterModel() {
         INITIAL_UPGRADES_DATA.map((data) => ({
           ...data,
           icon: getUpgradeIcon(data.id),
-        }))
+        })),
       )
       setCount(0)
       setIsVisible(true)
@@ -88,7 +88,7 @@ export function useInvisibleRoosterModel() {
           clickPower,
           passivePower,
           isMinimized,
-        })
+        }),
       )
     } catch (error) {
       console.error('Error saving to localStorage:', error)
@@ -167,7 +167,7 @@ export function useInvisibleRoosterModel() {
     'fixed bottom-4 right-4 z-50',
     'transition-all duration-300 ease-in-out',
     'transform-gpu',
-    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
   )
 
   return {

@@ -7,30 +7,42 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { HelpCircle } from 'lucide-react'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
 import { TmbCalculatorClient } from './tmb-calculator.client'
+import { PageLayout } from '@/components/page-layout'
+import { ArticleContent } from '@/components/article-content'
+import { FAQSection } from '@/components/faq-section'
+import { ImportantNote } from '@/components/important-note'
+
+const faqItems = [
+  {
+    question: 'A TMB muda com o tempo?',
+    answer:
+      'Sim. A TMB diminui com a idade e pode variar conforme mudanças de peso, massa muscular ou condição de saúde.',
+    value: 'item-1',
+  },
+  {
+    question: 'A TMB sozinha determina quantas calorias devo comer?',
+    answer:
+      'Não. É necessário multiplicar a TMB pelo seu nível de atividade para encontrar seu gasto calórico total (GET).',
+    value: 'item-2',
+  },
+  {
+    question: 'TMB serve para emagrecer?',
+    answer:
+      'Sim. Saber sua TMB ajuda a definir déficits calóricos de forma segura para perda de peso.',
+    value: 'item-3',
+  },
+]
 
 export default async function TmbCalculatorPage() {
   return (
-    <main className="prose w-full max-w-3xl my-8 space-y-8 px-8 sm:px-8 lg:px-8">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-4xl font-bold font-heading tracking-tight">
-          Calculadora de TMB
-        </h1>
-        <p className="text-muted-foreground">
-          Calcule sua Taxa Metabólica Basal (TMB) de forma prática e precisa
-        </p>
-      </div>
+    <PageLayout
+      title="Calculadora de TMB"
+      description="Calcule sua Taxa Metabólica Basal (TMB) de forma prática e precisa"
+    >
+      <ArticleContent>
+        <TmbCalculatorClient />
 
-      <TmbCalculatorClient />
-
-      <article className="prose max-w-3xl">
         <section>
           <h2 className="text-2xl font-semibold mb-4 font-heading tracking-tight">
             O que é TMB?
@@ -129,58 +141,16 @@ export default async function TmbCalculatorPage() {
           </div>
         </section>
 
-        <section>
-          <div className="flex items-center gap-2 mb-6 mt-8">
-            <HelpCircle className="h-6 w-6 text-primary" />
-            <h2 className="text-2xl font-semibold font-heading tracking-tight">
-              Perguntas frequentes sobre TMB (FAQ)
-            </h2>
-          </div>
+        <FAQSection
+          title="Perguntas frequentes sobre TMB (FAQ)"
+          items={faqItems}
+        />
 
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="text-xl font-medium">
-                A TMB muda com o tempo?
-              </AccordionTrigger>
-              <AccordionContent className="text-base">
-                Sim. A TMB diminui com a idade e pode variar conforme mudanças
-                de peso, massa muscular ou condição de saúde.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-2">
-              <AccordionTrigger className="text-xl font-medium">
-                A TMB sozinha determina quantas calorias devo comer?
-              </AccordionTrigger>
-              <AccordionContent className="text-base">
-                Não. É necessário multiplicar a TMB pelo seu nível de atividade
-                para encontrar seu gasto calórico total (GET).
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-3">
-              <AccordionTrigger className="text-xl font-medium">
-                TMB serve para emagrecer?
-              </AccordionTrigger>
-              <AccordionContent className="text-base">
-                Sim. Saber sua TMB ajuda a definir déficits calóricos de forma
-                segura para perda de peso.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </section>
-
-        <section className="border-t pt-8">
-          <p className="text-sm text-neutral-600">
-            <strong>Nota importante:</strong> Esta calculadora de TMB e as
-            informações fornecidas são apenas para fins educativos. Consulte um
-            profissional para orientações personalizadas.
-          </p>
-          <p className="text-sm text-neutral-600 mt-2">
-            Última atualização: Maio de 2024
-          </p>
-        </section>
-      </article>
-    </main>
+        <ImportantNote
+          note="Esta calculadora de TMB e as informações fornecidas são apenas para fins educativos. Consulte um profissional para orientações personalizadas."
+          lastUpdate="Maio de 2024"
+        />
+      </ArticleContent>
+    </PageLayout>
   )
 }

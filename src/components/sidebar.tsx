@@ -3,14 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
-  Calculator,
-  Flame,
-  Home,
-  KeyRound,
-  Scale,
-  Settings2,
-} from 'lucide-react'
-import {
   Sidebar as SidebarComponent,
   SidebarContent,
   SidebarGroup,
@@ -30,44 +22,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-
-const utilityGroups = [
-  {
-    title: 'Home',
-    icon: Home,
-    href: '/',
-  },
-  {
-    title: 'Calculadoras',
-    icon: Calculator,
-    items: [
-      {
-        title: 'IMC',
-        description: 'Calculadora de Índice de Massa Corporal',
-        href: '/tools/imc-calculator',
-        icon: Scale,
-      },
-      {
-        title: 'Calorias Diárias',
-        description: 'Calculadora de Calorias Diárias',
-        href: '/tools/tmb-calculator',
-        icon: Flame,
-      },
-    ],
-  },
-  {
-    title: 'Utilitários',
-    icon: Settings2,
-    items: [
-      {
-        title: 'Gerador de Senhas',
-        description: 'Gerador de Senhas Seguras',
-        href: '/tools/password-generator',
-        icon: KeyRound,
-      },
-    ],
-  },
-]
+import { utilityGroups } from '@/lib/utility-groups'
+import { Heart } from 'lucide-react'
 
 export function Sidebar({ version }: { version: string }) {
   const pathname = usePathname()
@@ -105,7 +61,7 @@ export function Sidebar({ version }: { version: string }) {
                     <SidebarMenuItem>
                       <SidebarMenuSub>
                         {group.items.map((item) => (
-                          <Tooltip key={item.title}>
+                          <Tooltip key={item.shortTitle}>
                             <TooltipTrigger asChild>
                               <SidebarMenuSubItem key={item.title}>
                                 <SidebarMenuSubButton
@@ -117,9 +73,9 @@ export function Sidebar({ version }: { version: string }) {
                                       <item.icon className="mr-2 h-4 w-4" />
                                     )}
                                     <span className="sr-only">
-                                      {item.title}
+                                      {item.shortTitle}
                                     </span>
-                                    <span>{item.title}</span>
+                                    <span>{item.shortTitle}</span>
                                   </Link>
                                 </SidebarMenuSubButton>
                               </SidebarMenuSubItem>
@@ -157,6 +113,22 @@ export function Sidebar({ version }: { version: string }) {
             )}
           </SidebarGroup>
         ))}
+
+        {/* Seção de Favoritos */}
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === '/favorites'}>
+                  <Link href="/favorites">
+                    <Heart className="mr-2 h-4 w-4" />
+                    <span>Favoritos</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarRail />
     </SidebarComponent>

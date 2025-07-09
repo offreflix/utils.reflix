@@ -12,6 +12,7 @@ import { Footer } from '@/components/footer'
 import { Toaster } from '@/components/ui/sonner'
 import { toasterIcons } from '@/components/ui/toaster-icons'
 import { metadata } from '@/lib/metadata'
+import { FavoritesProvider } from '@/contexts/favorites-context'
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
@@ -57,27 +58,29 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TooltipProvider>
-            <SidebarProvider>
-              <InvisibleRoosterView />
+          <FavoritesProvider>
+            <TooltipProvider>
+              <SidebarProvider>
+                <InvisibleRoosterView />
 
-              <Sidebar version={version} />
-              <SidebarInset>
-                <Header />
-                <div className="flex flex-1 flex-col">
-                  <div className="@container/main flex flex-1 flex-col items-center gap-2">
-                    {children}
-                    <Toaster
-                      position="top-center"
-                      closeButton
-                      icons={toasterIcons}
-                    />
+                <Sidebar version={version} />
+                <SidebarInset>
+                  <Header />
+                  <div className="flex flex-1 flex-col">
+                    <div className="@container/main flex flex-1 flex-col items-center gap-2">
+                      {children}
+                      <Toaster
+                        position="top-center"
+                        closeButton
+                        icons={toasterIcons}
+                      />
+                    </div>
                   </div>
-                </div>
-                <Footer />
-              </SidebarInset>
-            </SidebarProvider>
-          </TooltipProvider>
+                  <Footer />
+                </SidebarInset>
+              </SidebarProvider>
+            </TooltipProvider>
+          </FavoritesProvider>
         </ThemeProvider>
       </body>
     </html>
