@@ -7,10 +7,11 @@ import { motion } from 'framer-motion'
 import { Activity, Hourglass } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { TmbResultCard } from './tmb-result-card'
+import type { TmbResult } from '../tmb-calculator.types'
 
 interface TmbResultProps {
   tmb: string | undefined
-  tmbResult: any
+  tmbResult: TmbResult | null
 }
 
 export function TmbResult({ tmb, tmbResult }: TmbResultProps) {

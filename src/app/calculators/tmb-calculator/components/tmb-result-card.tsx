@@ -4,13 +4,14 @@ import type React from 'react'
 
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { TmbResult } from '../tmb-calculator.types'
 
 interface TmbResultCardProps {
   icon: React.ReactNode
   tmb: string
   category: string
   textColor: string
-  tmbResult: any
+  tmbResult: TmbResult | null
 }
 
 export const TmbResultCard = ({
