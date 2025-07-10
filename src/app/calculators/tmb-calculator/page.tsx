@@ -65,16 +65,104 @@ export default async function TmbCalculatorPage() {
             Fórmulas para calcular a TMB
           </h2>
           <p>As duas fórmulas mais utilizadas para calcular a TMB são:</p>
-          <ul className="list-disc pl-6 my-4">
-            <li>
-              <strong>Harris-Benedict:</strong> clássica, leva em conta peso,
-              altura, idade e sexo.
-            </li>
-            <li>
-              <strong>Mifflin-St Jeor:</strong> mais atual e precisa, usada por
-              nutricionistas.
-            </li>
-          </ul>
+
+          <div className="space-y-6 mt-6">
+            <div className="border rounded-lg p-6">
+              <h3 className="text-xl font-semibold mb-3 text-primary">
+                Fórmula de Harris-Benedict (1919)
+              </h3>
+              <p className="mb-3">
+                Desenvolvida pelos cientistas James Arthur Harris e Francis Gano
+                Benedict, esta foi a primeira fórmula amplamente aceita para
+                calcular a TMB. Baseada em estudos com indivíduos saudáveis,
+                considera:
+              </p>
+              <ul className="list-disc pl-6 mb-4 space-y-1">
+                <li>
+                  <strong>Peso corporal</strong> - massa total do corpo
+                </li>
+                <li>
+                  <strong>Altura</strong> - estatura em centímetros
+                </li>
+                <li>
+                  <strong>Idade</strong> - anos de vida
+                </li>
+                <li>
+                  <strong>Sexo biológico</strong> - diferenças metabólicas entre
+                  homens e mulheres
+                </li>
+              </ul>
+              <div className="border-l-2 border-primary bg-primary/10 p-4 rounded-md">
+                <p className="font-mono text-sm">
+                  <strong>Homens:</strong> TMB = 66 + (13.7 × peso) + (5 ×
+                  altura) - (6.8 × idade)
+                </p>
+                <p className="font-mono text-sm mt-2">
+                  <strong>Mulheres:</strong> TMB = 655 + (9.6 × peso) + (1.8 ×
+                  altura) - (4.7 × idade)
+                </p>
+              </div>
+              <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+                <strong>Limitações:</strong> Pode superestimar a TMB em pessoas
+                obesas e subestimar em pessoas muito magras ou musculosas.
+              </p>
+            </div>
+
+            <div className="border rounded-lg p-6">
+              <h3 className="text-xl font-semibold mb-3 text-primary">
+                Fórmula de Mifflin-St Jeor (1990)
+              </h3>
+              <p className="mb-3">
+                Desenvolvida por MD Mifflin e ST Jeor, esta fórmula é
+                considerada mais precisa e atual. Foi criada com base em estudos
+                mais recentes e é amplamente utilizada por nutricionistas e
+                profissionais de saúde:
+              </p>
+              <ul className="list-disc pl-6 mb-4 space-y-1">
+                <li>
+                  <strong>Mais precisa</strong> para diferentes faixas de peso
+                </li>
+                <li>
+                  <strong>Melhor para pessoas obesas</strong> - não superestima
+                  tanto
+                </li>
+                <li>
+                  <strong>Mais adequada para atletas</strong> - considera melhor
+                  a massa muscular
+                </li>
+                <li>
+                  <strong>Padrão atual</strong> - recomendada pela ADA (American
+                  Dietetic Association)
+                </li>
+              </ul>
+              <div className="border-l-2 border-primary bg-primary/10 p-4 rounded-md">
+                <p className="font-mono text-sm">
+                  <strong>Homens:</strong> TMB = (10 × peso) + (6.25 × altura) -
+                  (5 × idade) + 5
+                </p>
+                <p className="font-mono text-sm mt-2">
+                  <strong>Mulheres:</strong> TMB = (10 × peso) + (6.25 × altura)
+                  - (5 × idade) - 161
+                </p>
+              </div>
+              <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+                <strong>Vantagens:</strong> Mais precisa para a população atual,
+                melhor para diferentes composições corporais e faixas etárias.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+            <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+              💡 Por que usamos a fórmula Mifflin-St Jeor?
+            </h4>
+            <p className="text-blue-800 dark:text-blue-200 text-sm">
+              Nossa calculadora utiliza a fórmula de Mifflin-St Jeor por ser
+              mais precisa e atual. Ela oferece resultados mais confiáveis para
+              a maioria das pessoas, especialmente aquelas com diferentes
+              composições corporais.
+            </p>
+          </div>
         </section>
 
         <section>
