@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   Calculator,
+  FileTextIcon,
   Flame,
   Home,
   KeyRound,
@@ -65,6 +66,13 @@ const utilityGroups = [
         href: '/tools/password-generator',
         icon: KeyRound,
       },
+    {
+       title: 'Conversor de PDF',
+        description: 'Conversor para PDF',
+        href: '/tools/pdfconverter',
+        icon: FileTextIcon
+      }
+    
     ],
   },
 ]
