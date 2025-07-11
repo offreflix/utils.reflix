@@ -12,8 +12,10 @@ import {
   ChevronDown,
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import Script from 'next/script'
 import type { CliViewProps } from './cli.types'
 import { Skeleton } from '@/components/ui/skeleton'
+import { jsonLd } from './cli.metadata'
 
 export function CliView({
   history,
@@ -193,238 +195,249 @@ export function CliView({
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div
-        className={`${
-          isDarkTerminal
-            ? 'bg-neutral-900 text-green-400 border-neutral-700'
-            : 'bg-white text-green-600 border-neutral-300'
-        } rounded-lg border overflow-hidden`}
-      >
-        {/* Header */}
+    <>
+      <Script
+        id="cli-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="w-full max-w-4xl mx-auto">
         <div
           className={`${
-            isDarkTerminal ? 'bg-neutral-800' : 'bg-neutral-100'
-          } px-4 py-2 flex items-center justify-between`}
+            isDarkTerminal
+              ? 'bg-neutral-900 text-green-400 border-neutral-700'
+              : 'bg-white text-green-600 border-neutral-300'
+          } rounded-lg border overflow-hidden`}
         >
-          {localOS === 'mac' ? (
-            <>
-              {renderControlButtons()}
-              <div className="flex items-center space-x-2">
-                <Terminal className="h-4 w-4" />
-                <span className="text-sm font-medium">CLI Simulator</span>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex items-center space-x-2">
-                <Terminal className="h-4 w-4" />
-                <span className="text-sm font-medium">CLI Simulator</span>
-              </div>
-              {renderControlButtons()}
-            </>
-          )}
-        </div>
+          {/* Header */}
+          <div
+            className={`${
+              isDarkTerminal ? 'bg-neutral-800' : 'bg-neutral-100'
+            } px-4 py-2 flex items-center justify-between`}
+          >
+            {localOS === 'mac' ? (
+              <>
+                {renderControlButtons()}
+                <div className="flex items-center space-x-2">
+                  <Terminal className="h-4 w-4" />
+                  <span className="text-sm font-medium">CLI Simulator</span>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center space-x-2">
+                  <Terminal className="h-4 w-4" />
+                  <span className="text-sm font-medium">CLI Simulator</span>
+                </div>
+                {renderControlButtons()}
+              </>
+            )}
+          </div>
 
-        {/* Terminal Content */}
-        <div
-          ref={terminalRef}
-          className="h-96 overflow-y-auto p-4 font-mono text-sm"
-        >
-          {/* Welcome Message */}
-          {history.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-4"
-            >
-              <div
-                className={`${
-                  isDarkTerminal ? 'text-green-400' : 'text-green-600'
-                } mb-2`}
+          {/* Terminal Content */}
+          <div
+            ref={terminalRef}
+            className="h-96 overflow-y-auto p-4 font-mono text-sm"
+          >
+            {/* Welcome Message */}
+            {history.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-4"
               >
-                Bem-vindo ao CLI Simulator!
-              </div>
-              <div
-                className={`${
-                  isDarkTerminal ? 'text-neutral-400' : 'text-neutral-600'
-                } text-xs mb-4`}
-              >
-                Digite &quot;help&quot; para ver os comandos disponíveis.
-              </div>
-            </motion.div>
-          )}
-
-          {/* Command History */}
-          {history.map((entry, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-4"
-            >
-              {/* Command Input */}
-              <div className="flex items-center space-x-2 mb-2">
-                <span
-                  className={`${
-                    isDarkTerminal ? 'text-blue-400' : 'text-blue-600'
-                  }`}
-                >
-                  visitante@cli-simulator
-                </span>
-                <span
-                  className={`${
-                    isDarkTerminal ? 'text-neutral-500' : 'text-neutral-600'
-                  }`}
-                >
-                  :
-                </span>
-                <span
+                <div
                   className={`${
                     isDarkTerminal ? 'text-green-400' : 'text-green-600'
-                  }`}
+                  } mb-2`}
                 >
-                  ~
-                </span>
-                <span
+                  Bem-vindo ao CLI Simulator!
+                </div>
+                <div
                   className={`${
-                    isDarkTerminal ? 'text-neutral-500' : 'text-neutral-600'
-                  }`}
+                    isDarkTerminal ? 'text-neutral-400' : 'text-neutral-600'
+                  } text-xs mb-4`}
                 >
-                  $
-                </span>
-                <span
-                  className={`${
-                    isDarkTerminal ? 'text-white' : 'text-black'
-                  } ml-2`}
-                >
-                  {entry.command}
-                </span>
-              </div>
+                  Digite &quot;help&quot; para ver os comandos disponíveis.
+                </div>
+              </motion.div>
+            )}
 
-              {/* Command Output */}
-              {entry.output && (
-                <div className="ml-4 mb-2">
-                  <pre
-                    className={`whitespace-pre-wrap ${
-                      isDarkTerminal ? 'text-neutral-300' : 'text-neutral-700'
+            {/* Command History */}
+            {history.map((entry, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-4"
+              >
+                {/* Command Input */}
+                <div className="flex items-center space-x-2 mb-2">
+                  <span
+                    className={`${
+                      isDarkTerminal ? 'text-blue-400' : 'text-blue-600'
                     }`}
                   >
-                    {entry.output}
-                  </pre>
-                </div>
-              )}
-
-              {/* Timestamp */}
-              <div
-                className={`text-xs ${
-                  isDarkTerminal ? 'text-neutral-600' : 'text-neutral-500'
-                } ml-4`}
-              >
-                [{formatTimestamp(entry.timestamp)}]
-              </div>
-            </motion.div>
-          ))}
-
-          {/* Current Command Line */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex items-center space-x-2"
-          >
-            <span
-              className={`${
-                isDarkTerminal ? 'text-blue-400' : 'text-blue-600'
-              }`}
-            >
-              visitante@cli-simulator
-            </span>
-            <span
-              className={`${
-                isDarkTerminal ? 'text-neutral-500' : 'text-neutral-600'
-              }`}
-            >
-              :
-            </span>
-            <span
-              className={`${
-                isDarkTerminal ? 'text-green-400' : 'text-green-600'
-              }`}
-            >
-              ~
-            </span>
-            <span
-              className={`${
-                isDarkTerminal ? 'text-neutral-500' : 'text-neutral-600'
-              }`}
-            >
-              $
-            </span>
-            <div className="flex items-center ml-2">
-              <input
-                ref={inputRef}
-                type="text"
-                value={currentCommand}
-                onChange={(e) => onCommandChange(e.target.value)}
-                onKeyPress={handleKeyPress}
-                disabled={isProcessing}
-                className={`bg-transparent outline-none flex-1 min-w-0 ${
-                  isDarkTerminal ? 'text-white' : 'text-black'
-                }`}
-                placeholder={
-                  isProcessing ? 'Processando...' : 'Digite um comando...'
-                }
-              />
-              {isProcessing && (
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                >
-                  <ChevronRight
-                    className={`h-4 w-4 ${
+                    visitante@cli-simulator
+                  </span>
+                  <span
+                    className={`${
+                      isDarkTerminal ? 'text-neutral-500' : 'text-neutral-600'
+                    }`}
+                  >
+                    :
+                  </span>
+                  <span
+                    className={`${
                       isDarkTerminal ? 'text-green-400' : 'text-green-600'
                     }`}
-                  />
-                </motion.div>
-              )}
-            </div>
-          </motion.div>
-        </div>
-      </div>
+                  >
+                    ~
+                  </span>
+                  <span
+                    className={`${
+                      isDarkTerminal ? 'text-neutral-500' : 'text-neutral-600'
+                    }`}
+                  >
+                    $
+                  </span>
+                  <span
+                    className={`${
+                      isDarkTerminal ? 'text-white' : 'text-black'
+                    } ml-2`}
+                  >
+                    {entry.command}
+                  </span>
+                </div>
 
-      {/* Quick Commands */}
-      <div className="mt-4">
-        <h3 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
-          Comandos rápidos:
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {[
-            'help',
-            'date',
-            'whoami',
-            'joke',
-            'quote',
-            'weather',
-            'theme light',
-            'theme dark',
-            'terminal light',
-            'terminal dark',
-            'os windows',
-            'os mac',
-            'os linux',
-            'reset',
-          ].map((cmd) => (
-            <button
-              key={cmd}
-              onClick={() => onCommandSubmit(cmd)}
-              disabled={isProcessing}
-              className="px-3 py-1 text-xs bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50"
+                {/* Command Output */}
+                {entry.output && (
+                  <div className="ml-4 mb-2">
+                    <pre
+                      className={`whitespace-pre-wrap ${
+                        isDarkTerminal ? 'text-neutral-300' : 'text-neutral-700'
+                      }`}
+                    >
+                      {entry.output}
+                    </pre>
+                  </div>
+                )}
+
+                {/* Timestamp */}
+                <div
+                  className={`text-xs ${
+                    isDarkTerminal ? 'text-neutral-600' : 'text-neutral-500'
+                  } ml-4`}
+                >
+                  [{formatTimestamp(entry.timestamp)}]
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Current Command Line */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex items-center space-x-2"
             >
-              {cmd}
-            </button>
-          ))}
+              <span
+                className={`${
+                  isDarkTerminal ? 'text-blue-400' : 'text-blue-600'
+                }`}
+              >
+                visitante@cli-simulator
+              </span>
+              <span
+                className={`${
+                  isDarkTerminal ? 'text-neutral-500' : 'text-neutral-600'
+                }`}
+              >
+                :
+              </span>
+              <span
+                className={`${
+                  isDarkTerminal ? 'text-green-400' : 'text-green-600'
+                }`}
+              >
+                ~
+              </span>
+              <span
+                className={`${
+                  isDarkTerminal ? 'text-neutral-500' : 'text-neutral-600'
+                }`}
+              >
+                $
+              </span>
+              <div className="flex items-center ml-2">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={currentCommand}
+                  onChange={(e) => onCommandChange(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  disabled={isProcessing}
+                  className={`bg-transparent outline-none flex-1 min-w-0 ${
+                    isDarkTerminal ? 'text-white' : 'text-black'
+                  }`}
+                  placeholder={
+                    isProcessing ? 'Processando...' : 'Digite um comando...'
+                  }
+                />
+                {isProcessing && (
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      ease: 'linear',
+                    }}
+                  >
+                    <ChevronRight
+                      className={`h-4 w-4 ${
+                        isDarkTerminal ? 'text-green-400' : 'text-green-600'
+                      }`}
+                    />
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Quick Commands */}
+        <div className="mt-4">
+          <h3 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            Comandos rápidos:
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {[
+              'help',
+              'date',
+              'whoami',
+              'joke',
+              'quote',
+              'weather',
+              'theme light',
+              'theme dark',
+              'terminal light',
+              'terminal dark',
+              'os windows',
+              'os mac',
+              'os linux',
+              'reset',
+            ].map((cmd) => (
+              <button
+                key={cmd}
+                onClick={() => onCommandSubmit(cmd)}
+                disabled={isProcessing}
+                className="px-3 py-1 text-xs bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 rounded hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50"
+              >
+                {cmd}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
