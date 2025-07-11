@@ -26,13 +26,11 @@ export function Header() {
       return { group: { title: 'Favoritos', href: '/favorites' }, item: null }
     }
 
-    // Primeiro, verifica se está na página principal de um grupo
     const groupPage = utilityGroups.find((group) => group.href === pathname)
     if (groupPage) {
       return { group: groupPage, item: null }
     }
 
-    // Depois, verifica se está em uma página específica de um item
     for (const group of utilityGroups) {
       if (group.items) {
         const item = group.items.find((item) => item.href === pathname)
