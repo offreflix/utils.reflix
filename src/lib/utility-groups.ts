@@ -5,6 +5,8 @@ import {
   KeyRound,
   Scale,
   Settings2,
+  Terminal,
+  Zap,
 } from 'lucide-react'
 
 export const utilityGroups = [
@@ -59,9 +61,29 @@ export const utilityGroups = [
       },
     ],
   },
+  {
+    title: 'Playground',
+    icon: Zap,
+    href: '/playground',
+    description: 'Ferramentas experimentais e interativas',
+    items: [
+      {
+        id: 'cli',
+        title: 'CLI Interativo',
+        shortTitle: 'CLI',
+        description: 'Terminal interativo com comandos úteis',
+        href: '/playground/cli',
+        icon: Terminal,
+        color: 'text-purple-600',
+        bgColor: 'bg-purple-50',
+      },
+    ],
+  },
 ]
 
-export const getGroupsByType = (type: 'all' | 'calculators' | 'utilities') => {
+export const getGroupsByType = (
+  type: 'all' | 'calculators' | 'utilities' | 'playground',
+) => {
   if (type === 'all') {
     return utilityGroups.filter(
       (group) => group.items && group.items.length > 0,
@@ -74,6 +96,10 @@ export const getGroupsByType = (type: 'all' | 'calculators' | 'utilities') => {
 
   if (type === 'utilities') {
     return utilityGroups.filter((group) => group.title === 'Utilitários')
+  }
+
+  if (type === 'playground') {
+    return utilityGroups.filter((group) => group.title === 'Playground')
   }
 
   return []

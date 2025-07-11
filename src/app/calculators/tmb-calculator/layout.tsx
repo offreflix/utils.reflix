@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react'
-import { metadata } from './imc-calculator.metadata'
+import { metadata } from './tmb-calculator.metadata'
 
 export { metadata }
 
-export default function ImcCalculatorLayout({
+export default function TmbCalculatorLayout({
   children,
 }: {
   children: ReactNode

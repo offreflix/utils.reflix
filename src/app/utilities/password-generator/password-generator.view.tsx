@@ -9,6 +9,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import Script from 'next/script'
 
 import {
   PasswordGeneratorViewProps,
@@ -20,6 +21,7 @@ import { Input } from '@/components/ui/input'
 import { CheckIcon, CopyIcon, RefreshCwIcon } from 'lucide-react'
 import { toast } from 'sonner'
 import { Progress } from '@/components/ui/progress'
+import { jsonLd } from './password-generator.metadata'
 
 export const items = [
   {
@@ -54,6 +56,11 @@ export const PasswordGeneratorView = (props: PasswordGeneratorViewProps) => {
 
   return (
     <>
+      <Script
+        id="password-generator-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="font-sans">
         <section className="flex flex-col gap-8 lg:gap-2">
           <Card className="w-full">
