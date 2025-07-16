@@ -3,7 +3,7 @@ import { Github, Twitter } from 'lucide-react'
 
 export function Footer() {
   return (
-    <footer className="group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 flex h-12 shrink-0 items-center gap-2  transition-[width,height] ease-linear">
+    <footer className="px-24 border-t border-border h-16 group-has-data-[collapsible=offcanvas]/sidebar-wrapper:h-12 flex shrink-0 justify-center items-center gap-2  transition-[width,height] ease-linear">
       <div className="container flex flex-col items-center justify-between gap-4 py-6 md:h-16 md:flex-row md:py-0">
         <div className="text-center text-sm text-muted-foreground md:text-left">
           &copy; {new Date().getFullYear()} Junk Utils. All rights reserved.
