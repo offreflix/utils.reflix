@@ -20,7 +20,7 @@ interface FAQSectionProps {
 export function FAQSection({ title, items }: FAQSectionProps) {
   return (
     <section>
-      <div className="flex items-center gap-2 mb-6 mt-8">
+      <div className="flex items-center gap-2 mb-6">
         <HelpCircle className="h-6 w-6 text-primary" />
         <h2 className="text-2xl font-semibold font-heading tracking-tight">
           {title}

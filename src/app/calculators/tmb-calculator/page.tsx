@@ -12,6 +12,8 @@ import { PageLayout } from '@/components/page-layout'
 import { ArticleContent } from '@/components/article-content'
 import { FAQSection } from '@/components/faq-section'
 import { ImportantNote } from '@/components/important-note'
+import { AlertDescription, AlertTitle } from '@/components/alert'
+import { Alert } from '@/components/alert'
 
 const faqItems = [
   {
@@ -61,11 +63,10 @@ export default async function TmbCalculatorPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mt-8 mb-4 font-heading tracking-tight">
+          <h2 className="text-2xl font-semibold mb-4 font-heading tracking-tight">
             Fórmulas para calcular a TMB
           </h2>
           <p>As duas fórmulas mais utilizadas para calcular a TMB são:</p>
-
           <div className="space-y-6 mt-6">
             <div className="border rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-3 text-primary">
@@ -152,21 +153,21 @@ export default async function TmbCalculatorPage() {
             </div>
           </div>
 
-          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-            <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+          <Alert variant="info" className="mt-6">
+            <AlertTitle>
               💡 Por que usamos a fórmula Mifflin-St Jeor?
-            </h4>
-            <p className="text-blue-800 dark:text-blue-200 text-sm">
+            </AlertTitle>
+            <AlertDescription>
               Nossa calculadora utiliza a fórmula de Mifflin-St Jeor por ser
               mais precisa e atual. Ela oferece resultados mais confiáveis para
               a maioria das pessoas, especialmente aquelas com diferentes
               composições corporais.
-            </p>
-          </div>
+            </AlertDescription>
+          </Alert>
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mt-8 mb-4 font-heading tracking-tight">
+          <h2 className="text-2xl font-semibold mb-4 font-heading tracking-tight">
             Como interpretar sua TMB?
           </h2>
           <p>
