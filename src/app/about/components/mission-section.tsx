@@ -1,5 +1,5 @@
 import { Sparkles } from 'lucide-react'
-import { ValueCard } from './ValueCard'
+import { ValueCard } from './value-card'
 import { ValueCardProps } from '../about.types'
 
 export function MissionSection({

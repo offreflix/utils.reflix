@@ -6,13 +6,13 @@ import { ArticleContent } from '@/components/article-content'
 
 import { AboutViewProps } from './about.types'
 
-import { HeroSection } from './components/HeroSection'
-import { MissionSection } from './components/MissionSection'
-import { JourneySection } from './components/JourneySection'
-import { StatsSection } from './components/StatsSection'
-import { DeveloperSection } from './components/DeveloperSection'
-import { TechSection } from './components/TechSection'
-import { ContactSection } from './components/ContactSection'
+import { HeroSection } from './components/hero-section'
+import { MissionSection } from './components/mission-section'
+import { JourneySection } from './components/journey-section'
+import { StatsSection } from './components/stats-section'
+import { DeveloperSection } from './components/developer-section'
+import { TechSection } from './components/tech-section'
+import { ContactSection } from './components/contact-section'
 
 export const AboutView = (props: AboutViewProps) => {
   return (
