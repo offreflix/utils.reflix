@@ -7,6 +7,7 @@ import {
   Settings2,
   Terminal,
   Zap,
+  FileText,
 } from 'lucide-react'
 
 export const utilityGroups = [
@@ -40,6 +41,16 @@ export const utilityGroups = [
         icon: Flame,
         color: 'text-orange-600',
         bgColor: 'bg-orange-50',
+      },
+      {
+        id: 'word-counter',
+        title: 'Contador de Palavras e Caracteres',
+        shortTitle: 'Contador de Palavras',
+        description: 'Conta palavras e caracteres em textos',
+        href: '/calculators/word-counter',
+        icon: FileText,
+        color: 'text-teal-600',
+        bgColor: 'bg-teal-50',
       },
     ],
   },
