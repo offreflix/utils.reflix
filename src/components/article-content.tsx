@@ -6,12 +6,9 @@ interface ArticleContentProps {
   className?: string
 }
 
-export function ArticleContent({
-  children,
-  className = 'prose max-w-3xl',
-}: ArticleContentProps) {
+export function ArticleContent({ children, className }: ArticleContentProps) {
   return (
-    <article className={cn('prose max-w-3xl mx-auto', className)}>
+    <article className={cn('flex flex-col gap-8', className)}>
       {children}
     </article>
   )
