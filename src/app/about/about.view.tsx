@@ -8,7 +8,7 @@ import { AboutViewProps } from './about.types'
 
 import { HeroSection } from './components/hero-section'
 import { MissionSection } from './components/mission-section'
-import { JourneySection } from './components/jorney-section'
+import { JourneySection } from './components/journey-section'
 import { StatsSection } from './components/stats-section'
 import { DeveloperSection } from './components/developer-section'
 import { TechSection } from './components/tech-section'
