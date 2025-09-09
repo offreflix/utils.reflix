@@ -8,6 +8,7 @@ import {
   Terminal,
   Zap,
   FileText,
+  Code,
 } from 'lucide-react'
 
 export const utilityGroups = [
@@ -69,6 +70,16 @@ export const utilityGroups = [
         icon: KeyRound,
         color: 'text-green-600',
         bgColor: 'bg-green-50',
+      },
+      {
+        id: 'vscode-commands',
+        title: 'Comandos do VSCode',
+        shortTitle: 'Comandos do VSCode',
+        description: 'Comandos úteis para o VSCode',
+        href: '/utilities/vscode-commands',
+        icon: Code,
+        color: 'text-purple-600',
+        bgColor: 'bg-purple-50',
       },
     ],
   },

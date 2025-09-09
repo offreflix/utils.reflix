@@ -1,9 +1,19 @@
-import { LucideIcon, Scale, Flame, KeyRound, HelpCircle } from 'lucide-react'
+import {
+  LucideIcon,
+  Scale,
+  Flame,
+  KeyRound,
+  HelpCircle,
+  FileText,
+  Terminal,
+} from 'lucide-react'
 
 const iconMap: Record<string, LucideIcon> = {
   Scale,
   Flame,
   KeyRound,
+  FileText,
+  Terminal,
 }
 
 export function getIconByName(iconName: string): LucideIcon {
@@ -27,6 +37,8 @@ export function getIconName(icon: LucideIcon): string {
   if (icon === Scale) return 'Scale'
   if (icon === Flame) return 'Flame'
   if (icon === KeyRound) return 'KeyRound'
+  if (icon === FileText) return 'FileText'
+  if (icon === Terminal) return 'Terminal'
 
   console.log('❌ Icon not recognized, using HelpCircle')
   return 'HelpCircle'

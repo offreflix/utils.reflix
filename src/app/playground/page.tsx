@@ -41,6 +41,19 @@ const tools = [
       'Persistência de configurações',
     ],
   },
+  {
+    title: 'Comandos VS Code',
+    description:
+      'Referência completa de comandos e atalhos de teclado do Visual Studio Code organizados por categoria',
+    href: '/calculators/vscode-commands',
+    icon: Code,
+    features: [
+      'Atalhos organizados',
+      'Busca e filtros',
+      'Categorias de comandos',
+      'Referência completa',
+    ],
+  },
   // Futuras ferramentas podem ser adicionadas aqui
 ]
 
