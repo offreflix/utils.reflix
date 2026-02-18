@@ -9,6 +9,7 @@ import {
   Zap,
   FileText,
   Code,
+  TrendingUp,
 } from 'lucide-react'
 
 export const utilityGroups = [
@@ -52,6 +53,16 @@ export const utilityGroups = [
         icon: FileText,
         color: 'text-teal-600',
         bgColor: 'bg-teal-50',
+      },
+      {
+        id: 'juros-compostos',
+        title: 'Calculadora de Juros Compostos',
+        shortTitle: 'Juros Compostos',
+        description: 'Simule investimentos com juros compostos e aportes mensais',
+        href: '/calculators/juros-compostos',
+        icon: TrendingUp,
+        color: 'text-emerald-600',
+        bgColor: 'bg-emerald-50',
       },
     ],
   },
