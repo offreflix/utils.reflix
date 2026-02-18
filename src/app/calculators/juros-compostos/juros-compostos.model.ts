@@ -20,8 +20,9 @@ export const useJurosCompostosModel = () => {
   })
 
   function onSubmit(values: FormSchema) {
-    const { initialValue, monthlyValue, rate, rateType, period, periodType } =
-      values
+    const { initialValue, monthlyValue, rateType, periodType } = values
+    const rate = Number(values.rate)
+    const period = Number(values.period)
 
     // Convert to monthly rate
     // Annual: i_monthly = (1 + annual_rate)^(1/12) - 1

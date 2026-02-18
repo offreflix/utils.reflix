@@ -19,6 +19,7 @@ import {
 import Script from 'next/script'
 import { JurosCompostosViewProps } from './juros-compostos.types'
 import { JurosCompostosResultCard } from './components/juros-compostos-result'
+import { CurrencyInput } from './components/currency-input'
 import { jsonLd } from './juros-compostos.metadata'
 
 export function JurosCompostosView(props: JurosCompostosViewProps) {
@@ -55,13 +56,10 @@ export function JurosCompostosView(props: JurosCompostosViewProps) {
                             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
                               R$
                             </span>
-                            <Input
-                              type="number"
-                              min={0}
-                              step={0.01}
-                              placeholder="0,00"
+                            <CurrencyInput
+                              value={field.value}
+                              onChange={field.onChange}
                               className="pl-9"
-                              {...field}
                             />
                           </div>
                         </FormControl>
@@ -82,13 +80,10 @@ export function JurosCompostosView(props: JurosCompostosViewProps) {
                             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
                               R$
                             </span>
-                            <Input
-                              type="number"
-                              min={0}
-                              step={0.01}
-                              placeholder="0,00"
+                            <CurrencyInput
+                              value={field.value}
+                              onChange={field.onChange}
                               className="pl-9"
-                              {...field}
                             />
                           </div>
                         </FormControl>
