@@ -46,24 +46,13 @@ export const useJurosCompostosModel = () => {
       balance = balance * (1 + monthlyRate) + monthlyValue
       totalInvested += monthlyValue
 
-      const isYearBoundary = m % 12 === 0
-      const isLastMonth = m === totalMonths
-
-      if (isYearBoundary || isLastMonth || totalMonths <= 24) {
-        const year = Math.ceil(m / 12)
-        const label =
-          periodType === 'anos' || totalMonths > 24
-            ? `Ano ${year}`
-            : `Mês ${m}`
-
-        monthlyData.push({
-          label,
-          month: m,
-          totalInvested,
-          interest: balance - totalInvested,
-          total: balance,
-        })
-      }
+      monthlyData.push({
+        label: `Mês ${m}`,
+        month: m,
+        totalInvested,
+        interest: balance - totalInvested,
+        total: balance,
+      })
     }
 
     setResult({

@@ -1,185 +1,120 @@
 'use client'
 
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+  ChartTooltip,
+} from '@/components/ui/chart'
+import type { TooltipProps } from 'recharts'
 import { PeriodData } from '../juros-compostos.types'
 
 interface Props {
   data: PeriodData[]
 }
 
-function formatLabel(value: number): string {
+const chartConfig = {
+  total: {
+    label: 'Valor Total',
+    color: 'var(--chart-1)',
+  },
+  investido: {
+    label: 'Valor Investido',
+    color: 'var(--chart-2)',
+  },
+} satisfies ChartConfig
+
+function formatYAxis(value: number): string {
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`
   if (value >= 1_000) return `${(value / 1_000).toFixed(0)}k`
-  return value.toFixed(0)
+  return String(value)
+}
+
+function formatBRL(value: number): string {
+  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+}
+
+function CustomTooltip({ active, payload, label }: TooltipProps<number, string>) {
+  if (!active || !payload?.length) return null
+
+  return (
+    <div className="rounded-lg border bg-background px-3 py-2 shadow-lg text-xs">
+      <p className="font-semibold mb-2">{label}</p>
+      <div className="space-y-1.5">
+        {payload.map((entry) => (
+          <div
+            key={entry.dataKey}
+            className="flex items-center justify-between gap-8"
+          >
+            <div className="flex items-center gap-1.5">
+              <div
+                className="w-2 h-2 rounded-full shrink-0"
+                style={{ backgroundColor: entry.color }}
+              />
+              <span className="text-muted-foreground">
+                {chartConfig[entry.dataKey as keyof typeof chartConfig]?.label}
+              </span>
+            </div>
+            <span className="font-mono font-medium tabular-nums">
+              {formatBRL(entry.value ?? 0)}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export function JurosCompostosChart({ data }: Props) {
   if (data.length === 0) return null
 
-  const width = 560
-  const height = 280
-  const pad = { top: 16, right: 16, bottom: 40, left: 64 }
-  const cw = width - pad.left - pad.right
-  const ch = height - pad.top - pad.bottom
-
-  const maxValue = Math.max(...data.map((d) => d.total))
-
-  const scaleX = (i: number) =>
-    pad.left + (i / Math.max(data.length - 1, 1)) * cw
-  const scaleY = (v: number) => pad.top + ch - (v / maxValue) * ch
-
-  // Build SVG path strings
-  const totalPath = data
-    .map((d, i) => `${i === 0 ? 'M' : 'L'}${scaleX(i)},${scaleY(d.total)}`)
-    .join(' ')
-
-  const investedPath = data
-    .map(
-      (d, i) => `${i === 0 ? 'M' : 'L'}${scaleX(i)},${scaleY(d.totalInvested)}`,
-    )
-    .join(' ')
-
-  const baseline = pad.top + ch
-  const lastX = scaleX(data.length - 1)
-  const firstX = scaleX(0)
-
-  const totalAreaPath = `${totalPath} L${lastX},${baseline} L${firstX},${baseline} Z`
-  const investedAreaPath = `${investedPath} L${lastX},${baseline} L${firstX},${baseline} Z`
-
-  // Y-axis ticks
-  const yTicks = 5
-  const yLabels = Array.from({ length: yTicks + 1 }, (_, i) => {
-    const value = (maxValue * i) / yTicks
-    return { value, y: scaleY(value) }
-  })
-
-  // X-axis ticks (max 10 labels)
-  const step = Math.max(1, Math.floor(data.length / 10))
-  const xLabels = data.filter((_, i) => i % step === 0 || i === data.length - 1)
+  const chartData = data.map((d) => ({
+    period: d.label,
+    total: Math.round(d.total * 100) / 100,
+    investido: Math.round(d.totalInvested * 100) / 100,
+  }))
 
   return (
-    <div className="w-full overflow-x-auto">
-      <svg
-        viewBox={`0 0 ${width} ${height}`}
-        className="w-full min-w-[320px]"
-        aria-label="Gráfico de juros compostos"
-      >
-        {/* Grid lines */}
-        {yLabels.map(({ y }, i) => (
-          <line
-            key={i}
-            x1={pad.left}
-            y1={y}
-            x2={pad.left + cw}
-            y2={y}
-            stroke="currentColor"
-            strokeOpacity={0.1}
-            strokeWidth={1}
-          />
-        ))}
-
-        {/* Total area */}
-        <path d={totalAreaPath} fill="#3b82f6" fillOpacity={0.12} />
-        {/* Invested area */}
-        <path d={investedAreaPath} fill="#10b981" fillOpacity={0.2} />
-
-        {/* Total line */}
-        <path
-          d={totalPath}
-          fill="none"
-          stroke="#3b82f6"
+    <ChartContainer config={chartConfig} className="min-h-[280px] w-full">
+      <LineChart data={chartData} margin={{ left: 8, right: 8, top: 4 }}>
+        <CartesianGrid vertical={false} strokeOpacity={0.4} />
+        <XAxis
+          dataKey="period"
+          tickLine={false}
+          axisLine={false}
+          tickMargin={8}
+          interval="preserveStartEnd"
+          tick={{ fontSize: 11 }}
+        />
+        <YAxis
+          tickLine={false}
+          axisLine={false}
+          tickFormatter={formatYAxis}
+          width={52}
+          tick={{ fontSize: 11 }}
+        />
+        <ChartTooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
+        <ChartLegend content={<ChartLegendContent />} />
+        <Line
+          dataKey="total"
+          type="monotone"
+          stroke="var(--color-total)"
           strokeWidth={2}
-          strokeLinejoin="round"
-          strokeLinecap="round"
+          dot={false}
+          activeDot={{ r: 4 }}
         />
-
-        {/* Invested line */}
-        <path
-          d={investedPath}
-          fill="none"
-          stroke="#10b981"
+        <Line
+          dataKey="investido"
+          type="monotone"
+          stroke="var(--color-investido)"
           strokeWidth={2}
-          strokeDasharray="4 3"
-          strokeLinejoin="round"
-          strokeLinecap="round"
+          strokeDasharray="5 4"
+          dot={false}
+          activeDot={{ r: 4 }}
         />
-
-        {/* Data points on total line */}
-        {data.map((d, i) => (
-          <circle
-            key={i}
-            cx={scaleX(i)}
-            cy={scaleY(d.total)}
-            r={3}
-            fill="#3b82f6"
-          />
-        ))}
-
-        {/* Y-axis labels */}
-        {yLabels.map(({ value, y }, i) => (
-          <text
-            key={i}
-            x={pad.left - 8}
-            y={y}
-            textAnchor="end"
-            dominantBaseline="middle"
-            fontSize={10}
-            fill="currentColor"
-            opacity={0.6}
-          >
-            {formatLabel(value)}
-          </text>
-        ))}
-
-        {/* X-axis labels */}
-        {xLabels.map((d) => {
-          const idx = data.indexOf(d)
-          return (
-            <text
-              key={idx}
-              x={scaleX(idx)}
-              y={pad.top + ch + 20}
-              textAnchor="middle"
-              fontSize={9}
-              fill="currentColor"
-              opacity={0.6}
-            >
-              {d.label}
-            </text>
-          )
-        })}
-
-        {/* Axes */}
-        <line
-          x1={pad.left}
-          y1={pad.top}
-          x2={pad.left}
-          y2={pad.top + ch}
-          stroke="currentColor"
-          strokeOpacity={0.2}
-          strokeWidth={1}
-        />
-        <line
-          x1={pad.left}
-          y1={pad.top + ch}
-          x2={pad.left + cw}
-          y2={pad.top + ch}
-          stroke="currentColor"
-          strokeOpacity={0.2}
-          strokeWidth={1}
-        />
-      </svg>
-
-      {/* Legend */}
-      <div className="flex gap-6 justify-center mt-2 text-xs text-muted-foreground">
-        <span className="flex items-center gap-1.5">
-          <span className="inline-block w-5 h-0.5 rounded" style={{ background: '#3b82f6' }} />
-          Valor total
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="inline-block w-5 h-0.5 rounded" style={{ background: '#10b981', borderBottom: '2px dashed' }} />
-          Valor investido
-        </span>
-      </div>
-    </div>
+      </LineChart>
+    </ChartContainer>
   )
 }
