@@ -8,6 +8,7 @@ import {
   Terminal,
   Zap,
   FileText,
+  TrendingUp,
 } from 'lucide-react'
 
 export const utilityGroups = [
@@ -51,6 +52,16 @@ export const utilityGroups = [
         icon: FileText,
         color: 'text-teal-600',
         bgColor: 'bg-teal-50',
+      },
+      {
+        id: 'compound-interest-calculator',
+        title: 'Calculadora de Juros Compostos',
+        shortTitle: 'Juros Compostos',
+        description: 'Simule o crescimento dos seus investimentos com juros compostos',
+        href: '/calculators/compound-interest-calculator',
+        icon: TrendingUp,
+        color: 'text-green-600',
+        bgColor: 'bg-green-50',
       },
     ],
   },
