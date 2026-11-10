@@ -10,6 +10,7 @@ import {
   FileText,
   Code,
   TrendingUp,
+  Dices,
 } from 'lucide-react'
 
 export const utilityGroups = [
@@ -109,6 +110,16 @@ export const utilityGroups = [
         icon: Terminal,
         color: 'text-purple-600',
         bgColor: 'bg-purple-50',
+      },
+      {
+        id: 'roleta',
+        title: 'Roleta de Sorteio',
+        shortTitle: 'Roleta',
+        description: 'Crie uma roleta com seus itens e sorteie',
+        href: '/playground/roleta',
+        icon: Dices,
+        color: 'text-pink-600',
+        bgColor: 'bg-pink-50',
       },
     ],
   },

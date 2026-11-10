@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Terminal, Code, Zap } from 'lucide-react'
+import { Terminal, Code, Zap, Dices } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Playground - Utils Reflix',
@@ -52,6 +52,19 @@ const tools = [
       'Busca e filtros',
       'Categorias de comandos',
       'Referência completa',
+    ],
+  },
+  {
+    title: 'Roleta de Sorteio',
+    description:
+      'Crie sua própria roleta com os itens que quiser e sorteie com animação, som e confete',
+    href: '/playground/roleta',
+    icon: Dices,
+    features: [
+      'Itens personalizados',
+      'Histórico de sorteios',
+      'Salva no navegador',
+      'Som e confete',
     ],
   },
   // Futuras ferramentas podem ser adicionadas aqui
